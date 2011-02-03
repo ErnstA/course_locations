@@ -1,0 +1,9 @@
+%p#notice #{notice}
+
+%p Name: #{@area.name}
+%p Parent Id: #{@area.parent_id}
+%p Id: #{@area.id}
+= link_to 'Edit', edit_area_path(@area)  |
+= link_to 'Back', locations_path 
+%p
+  = params

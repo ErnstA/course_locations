@@ -1,0 +1,21 @@
+%h3= "Choose action on: #{@location.to_s}"
+%p Parent Id: #{@location.parent_id}, Id: #{@location.id}
+
+= stylesheet_link_tag 'appstylesheet'
+%p#notice #{notice}
+
+%h5 Modify this node
+%ul
+  %li= link_to "Edit: #{@location.to_s}",(edit_location_path params[:id])
+  %li= link_to "Delete: #{@location.to_s}", delete_location_path(@location), :confirm => "Are you sure?"
+
+%h5 add a child (if it is not a venue)
+%ul
+  %li= link_to "Add an Area",(new_child_area_path params[:id])
+  %li= link_to "Add a Venue",(new_child_venue_path params[:id])
+  %li= link_to "Add an Organisation (allowed if no ancestor is an organisation)",(new_child_organisation_path params[:id])
+
+<p>
+<a href="/locations"> Back </a>
+%h5 params #{params}
+

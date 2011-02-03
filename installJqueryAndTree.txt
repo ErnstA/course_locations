@@ -1,0 +1,133 @@
+rvm install ruby-1.9.2-p136 
+rvm ruby-1.9.2-p136A
+Does not work! nokogiri
+
+rvm ruby-1.9.2-p0 
+
+gem list -r rails
+  rails (3.0.3)
+gem install rails --version "3.0.3"
+
+cd /home/ernsta/ruby/railsApps
+rails new course_locations -T -J --database=postgresql
+
+cd course_locations
+Gemfile:
+gem 'acts_as_tree'
+gem 'haml'
+gem jquery-rails  # see https://github.com/rails/jquery-ujs
+group :development do
+  gem 'rspec-rails'
+end
+
+bundle install
+[ernsta@xp course_locations]$ rails generate jquery:install
+      remove  public/javascripts/controls.js
+      remove  public/javascripts/dragdrop.js
+      remove  public/javascripts/effects.js
+      remove  public/javascripts/prototype.js
+    fetching  jQuery (1.4.4)
+      create  public/javascripts/jquery.js
+      create  public/javascripts/jquery.min.js
+    fetching  jQuery UJS adapter (github HEAD)
+      create  public/javascripts/rails.js
+
+Now the template helper javascript_include_tag :defaults will generate SCRIPT tags to load jQuery and rails.js.
+
+rails generate rspec:install
+
+Install tree view:
+http://madcoderspeak.blogspot.com/2009/07/how-to-show-tree-treeview-in-rails-view.html
+[ernsta@xp location]$ find . -name jquery.js
+./public/javascripts/jquery.js
+http://bassistance.de/jquery-plugins/jquery-plugin-treeview/
+download jquery.treeview.zip to location/thirparty
+
+jquery.treeview.XXX.js (the javascript files) : Copy them to my
+public\javascripts folder within my Rails project folder.
+
+lib:
+jquery.js was already installed
+cp thirdparty/jquery.treeview/lib/jquery.cookie.js public/javascripts
+
+jquery.treeview.css (the CSS stylesheet) : Copy to my public\stylesheets folder
+
+images subfolder : Copy the images in this folder to a new subfolder
+public\images\jquery.treeview.images
+
+vim public/stylesheets/jquery.treeview.css
+"url(images/"
+becomes "url(../images/jquery.treeview.images/"
+:%s/url(images\//url(..\/images\/jquery.treeview.images\//gc
+
+vim app/views/layouts/application.html.erb
+add lines
+# wrong ! <%= javascript_include_tag 'lib/jquery', 'jquery.treeview', 'custom' %>
+<%= javascript_include_tag  'jquery.treeview', 'custom' %>
+<%= stylesheet_link_tag 'jquery.treeview.css' %>
+
+create file
+vim public/javascripts/custom.js
+$(document).ready( function() {
+$("#my_tree").treeview();
+} );
+
+Database:
+edit config/database.yml
+service postgresql restart
+rake db:create
+
+psql -l | grep course_locations
+course_locations_development | ernsta   | UTF8
+course_locations_test        | ernsta   | UTF8
+
+
+Now create scaffold:
+rails generate scaffold location name:string type:string parent_id:string
+type will later be used for single table inheritance
+parent_id for act_as_tree
+
+rake db:migrate
+vim db/seed.rb
+
+rake db:seed
+
+ERRROR  method delete gets routed to action show
+install gem jquery-ujs (oops does not exist)
+install jquery-rails
+
+This actually works!
+curl "http://10.0.2.58:3000/locaitions/1" -X DELETE
+
+but it does not work from a browser!
+ended up with workaround: defining named route delete_locality
+
+rails generate scaffold_controller venue -p
+rails generate scaffold_controller area -p
+  resources :venues
+  match 'venues/:id/delete' => 'venues#destroy', :as => :delete_venue
+
+  resources :areas
+  match 'areas/:id/delete' => 'areas#destroy', :as => :delete_area
+
+
+rails generate controller location_tree -p
+
+
+RSPEC
+=====
+
+rake environment RAILS_ENV=test db:migrate
+rake environment RAILS_ENV=test db:seed
+rspec areas_controller_spec.rb
+15 examples, 0 failures
+
+rails generate scaffold_controller organisation -p
+routes:
+ 18   resources :organisations
+ 19   match 'organisations/:id/delete' => 'organisations#destroy', :as =>
+:delete_organisation
+ 20   match '/organisations/new/:id(.:format)' => 'organisations#new', :as =>
+:new_child_organisation
+
+
