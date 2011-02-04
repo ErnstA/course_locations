@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20110131104608) do
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.string   "type"
-    t.string   "parent_id"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

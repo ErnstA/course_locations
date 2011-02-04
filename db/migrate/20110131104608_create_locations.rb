@@ -3,7 +3,7 @@ class CreateLocations < ActiveRecord::Migration
     create_table :locations do |t|
       t.string :name
       t.string :type
-      t.string :parent_id
+      t.integer :parent_id
 
       t.timestamps
     end
