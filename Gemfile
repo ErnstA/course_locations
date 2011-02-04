@@ -11,6 +11,8 @@ gem 'acts_as_tree'
 gem 'haml'
 gem 'jquery-rails'  , '>= 0.2.6' # see https://github.com/rails/jquery-ujs
 
+gem 'json'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -35,4 +37,5 @@ group :development, :test do
 end
 group :development do
   gem 'rspec-rails'
+  gem 'heroku'
 end
