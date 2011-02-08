@@ -1,4 +1,7 @@
 CourseLocations::Application.routes.draw do
+
+  resources :variables
+
   # workaround because method delete does not work after installing jquery
   # analogous to edit
   # edit_location GET    /locations/:id/edit(.:format) {:action=>"edit", :controller=>"locations"}
@@ -20,6 +23,10 @@ CourseLocations::Application.routes.draw do
   match '/organisations/new/:id(.:format)' => 'organisations#new', :as => :new_child_organisation
 
   resources :location_tree
+
+  # for devise
+  devise_for :users, :path_names => { :sign_up => "register" }
+  root :to => "locations#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

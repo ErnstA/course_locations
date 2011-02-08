@@ -83,7 +83,7 @@ course_locations_test        | ernsta   | UTF8
 
 
 Now create scaffold:
-rails generate scaffold location name:string type:string parent_id:string
+rails generate scaffold location name:string type:string parent_id:integer
 type will later be used for single table inheritance
 parent_id for act_as_tree
 
@@ -130,4 +130,7 @@ routes:
  20   match '/organisations/new/:id(.:format)' => 'organisations#new', :as =>
 :new_child_organisation
 
+destroy previous generate:
 
+rails destroy scaffold variable string:name string:value
+rails generate scaffold variable name:string value:string

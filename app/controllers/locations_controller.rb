@@ -2,6 +2,8 @@ class LocationsController < ApplicationController
 # create, new and update is invoked directly on subclass controller, NOT here
 # and index, show, edit and destroy are redirected from here
 
+  before_filter :authenticate_user! # , :except => [:show, :index]
+
   # Ask subclass of location for controller name and redirect there
   def redirect(delete=false)
     location = Location.find(params[:id])

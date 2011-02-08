@@ -13,6 +13,8 @@ gem 'jquery-rails'  , '>= 0.2.6' # see https://github.com/rails/jquery-ujs
 
 gem 'json'
 
+gem 'devise'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
