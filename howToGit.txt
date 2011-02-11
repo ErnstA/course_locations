@@ -24,3 +24,10 @@ Writing objects: 100% (106/106), 19.15 KiB, done.
 Total 106 (delta 41), reused 0 (delta 0)
 To git@github.com:ErnstA/course_locations.git
    19a313a..34db28e  master -> maste
+
+
+heroku app
+http://quiet-stream-240.heroku.com/locations
+and it's git repo
+git@heroku.com:quiet-stream-240.git
+

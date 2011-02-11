@@ -16,6 +16,10 @@ authorization do
     has_permission_on [:locations, :venues, :areas, :roles, :users], :to => [:index, :show]
   end
 
+  role :guest do
+    has_permission_on [:locations, :venues, :areas, :roles, :users], :to => [:index, :show]
+  end
+
 end
 
 # index show new create edit update destroy
