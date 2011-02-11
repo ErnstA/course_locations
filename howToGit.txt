@@ -1,0 +1,26 @@
+How to use git
+
+git status
+git add.
+git commit -am'some message'
+
+git push heroku
+
+
+git branch
+
+git branch mybranch ??
+
+edit on mybranch
+
+git checkout master
+
+git merge mybranch ??
+
+git push
+Counting objects: 152, done.
+Compressing objects: 100% (98/98), done.
+Writing objects: 100% (106/106), 19.15 KiB, done.
+Total 106 (delta 41), reused 0 (delta 0)
+To git@github.com:ErnstA/course_locations.git
+   19a313a..34db28e  master -> maste

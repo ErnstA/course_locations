@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208130606) do
+ActiveRecord::Schema.define(:version => 20110210033718) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(:version => 20110208130606) do
     t.string   "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_roles", :id => false, :force => true do |t|
+    t.integer "user_id", :null => false
+    t.integer "role_id", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -40,6 +52,11 @@ ActiveRecord::Schema.define(:version => 20110208130606) do
 
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["username", "subdomain"], :name => "index_users_on_username_and_subdomain", :unique => true
+
+  create_table "users_roles", :id => false, :force => true do |t|
+    t.integer "users_id", :null => false
+    t.integer "roles_id", :null => false
+  end
 
   create_table "variables", :force => true do |t|
     t.string   "name"

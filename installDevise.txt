@@ -34,4 +34,12 @@ ruby-1.8.7-p249 > User.first.update_attribute(:username, "eifion")
 User.first.update_attribute(:username, "ex1")
 
 rails generate migration add_subdomain_to_users subdomain:string
+rails generate migration change_email_in_users email:string
+
+ add Gemfile declarative_authorizaion
+ rails generate model Role name:string, description:string
+
+ rails generate migration create_users_roles
+ rails generate migration change_user_id_in_users_roles
+
 

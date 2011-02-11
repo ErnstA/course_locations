@@ -14,6 +14,10 @@ gem 'jquery-rails'  , '>= 0.2.6' # see https://github.com/rails/jquery-ujs
 gem 'json'
 
 gem 'devise'
+gem 'declarative_authorization'
+# use instead:
+#cd vendor/plugins && git clone git://github.com/stffn/declarative_authorization.git
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,7 +40,9 @@ gem 'devise'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'webrat'
+  gem 'spork'
 end
+
 group :development do
   gem 'rspec-rails'
   gem 'heroku'

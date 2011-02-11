@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
 # and index, show, edit and destroy are redirected from here
 
   before_filter :authenticate_user! # , :except => [:show, :index]
+  filter_resource_access
 
   # Ask subclass of location for controller name and redirect there
   def redirect(delete=false)
