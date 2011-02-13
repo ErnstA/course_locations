@@ -31,3 +31,13 @@ http://quiet-stream-240.heroku.com/locations
 and it's git repo
 git@heroku.com:quiet-stream-240.git
 
+[ernsta@xp course_locations]$ heroku list
+floating-fire-15
+blooming-light-51
+quiet-stream-240
+
+how do I set where 
+git push heroku master
+pushes to?
+
+http://young-flower-648.heroku.com/ | git@heroku.com:young-flower-648.git
