@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210033718) do
+ActiveRecord::Schema.define(:version => 20110331041912) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.string   "type"
-    t.string   "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20110210033718) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
